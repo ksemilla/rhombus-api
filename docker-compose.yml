@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  rh-redis:
+    image: "redis:alpine"
+    networks:
+      - shared_network
+
+  rh-web:
+    build:
+      context: .
+      dockerfile: local.Dockerfile
+    command: >
+      sh -c "
+      python3 manage.py migrate &&
+      python3 manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
+    environment:
+      - DJANGO_READ_DOT_ENV_FILE=True
+      - CELERY_BROKER_URL=redis://rh-redis:6379/0
+    depends_on:
+      - rh-redis
+    networks:
+      - shared_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    
+
+  rh-celery:
+    build:
+      context: .
+      dockerfile: local.Dockerfile
+    command: celery -A rhombus_api worker -l INFO
+    volumes:
+      - .:/app
+    depends_on:
+      - rh-redis
+    environment:
+      - DJANGO_READ_DOT_ENV_FILE=True
+      - CELERY_BROKER_URL=redis://rh-redis:6379/0
+    networks:
+      - shared_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  shared_network:
