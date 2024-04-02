@@ -26,16 +26,24 @@ There are more ways to install docker. See full details of [docker here](https:/
 
 > Option 1: Install as [plug in](https://docs.docker.com/compose/install/linux/)
 
-To run as plugin,
+> Option 2: Install as [stand alone](https://docs.docker.com/compose/install/standalone/)
+
+### Running locally
+
+If you installed docker compose as plug in,
 
 ```
 docker compose up
 ```
 
-> Option 2: Install as [stand alone](https://docs.docker.com/compose/install/standalone/)
-
-To run as stand alone,
+If installed as stand alone,
 
 ```
 docker-compose up
 ```
+
+_Notes_
+
+You can add the `--build` flag when running to rebuild the images.
+
+ex. `docker compose up --build` or `docker-compose up --build`
