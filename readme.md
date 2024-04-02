@@ -17,6 +17,7 @@ For Mac,
 For Linux,
 
 > Option 1: Installation of [Docker Desktop for Linux](https://docs.docker.com/desktop/install/linux-install/)
+
 > Option 2: Installation of [Docker Engine for Linux Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
 There are more ways to install docker. See full details of [docker here](https://docs.docker.com/manuals/)
