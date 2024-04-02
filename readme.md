@@ -11,7 +11,7 @@ The easiest way to run the app locally is by docker and docker compose.
 ### Options for installing docker
 
     For Mac,
-    Option 1: Installation of [Docker Desktop for Mac](https://docs.docker.com/desktop/install/mac-install/)
+    Option 1: Installation of Docker Desktop for [Mac](https://docs.docker.com/desktop/install/mac-install/)
 
     For Linux,
     Option 1: Installation of [Docker Desktop for Linux](https://docs.docker.com/desktop/install/linux-install/)
