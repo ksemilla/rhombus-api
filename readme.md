@@ -2,11 +2,11 @@
 
 A simple web application for inferring data types from a CSV or XLSX files.
 
-## Python Version - 3.11.6
+## Python Version - **3.11.6**
 
 ## Installation
 
-The easiest way to run the app locally is by docker and docker compose.
+The easiest way to run the app locally is by docker and docker compose since this app uses Redis.
 
 ### Options for installing docker
 
@@ -28,7 +28,7 @@ There are more ways to install docker. See full details of [docker here](https:/
 
 > Option 2: Install as [stand alone](https://docs.docker.com/compose/install/standalone/)
 
-### Running locally
+## Running locally for docker
 
 If you installed docker compose as plug in,
 
@@ -42,8 +42,26 @@ If installed as stand alone,
 docker-compose up
 ```
 
-_Notes_
+## _Notes_
 
 You can add the `--build` flag when running to rebuild the images.
 
 ex. `docker compose up --build` or `docker-compose up --build`
+
+If you don't want to use docker, you are free to install manually.
+This project uses [Celery](https://docs.celeryq.dev/en/stable/index.html) for background tasks.
+So make sure to install a [broker](https://docs.celeryq.dev/en/stable/getting-started/first-steps-with-celery.html#choosing-a-broker).
+If you installed a broker besides Redis, please set the environment variable `CELERY_BROKER_URL`.
+
+## Running manually
+
+It is preferred to use a virtual environment when running local python applications.
+
+Install requirements,
+`pip3 install -r requirements.txt`
+
+Run django app,
+`python3 manage.py runserver`
+
+Run celery,
+`celery -A rhombus_api worker -l INFO`
